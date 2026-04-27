@@ -3,6 +3,7 @@ package com.pawan.paymentserviceecom.strategies;
 import com.razorpay.PaymentLink;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
+import com.stripe.exception.StripeException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class Razorpay implements PaymentGateway{
                                       Long amount,
                                       String phoneNumber,
                                       String name,
-                                      String email) throws RazorpayException {
+                                      String email) throws StripeException,RazorpayException {
 
         JSONObject paymentLinkRequest = new JSONObject();
         paymentLinkRequest.put("amount",amount);
@@ -44,7 +45,7 @@ public class Razorpay implements PaymentGateway{
         paymentLinkRequest.put("reminder_enable",true);
 
         JSONObject notes = new JSONObject();
-        notes.put("policy_name","Jeevan Bima");
+        notes.put("Electricity Bill","March 26");
 
         paymentLinkRequest.put("notes",notes);
 

@@ -14,10 +14,6 @@ public class PaymentGatewayChooserStrategy {
 
 
     public PaymentGateway getBestPaymentGateway(){
-        /*
-        write an algorithm to choose your gateway
-         */
         return stripeGateway;
-        // logic to choose the best payment gateway based on the request
     }
 }

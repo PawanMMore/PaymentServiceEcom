@@ -3,6 +3,7 @@ package com.pawan.paymentserviceecom.controllers;
 import com.pawan.paymentserviceecom.dtos.PaymentRequestDTO;
 import com.pawan.paymentserviceecom.services.IPaymentService;
 import com.razorpay.RazorpayException;
+import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,12 +17,11 @@ public class PaymentController {
     private IPaymentService paymentService;
 
     @PostMapping
-    public String generatePaymentLink(@RequestBody PaymentRequestDTO paymentRequestDto) throws RazorpayException {
+    public String generatePaymentLink(@RequestBody PaymentRequestDTO paymentRequestDto) throws RazorpayException, StripeException {
         return paymentService.generatePaymentLink(paymentRequestDto.getOrderId(),
                 paymentRequestDto.getAmount(),
                 paymentRequestDto.getPhoneNumber(),
                 paymentRequestDto.getName(),
                 paymentRequestDto.getEmail());
     }
-
 }
